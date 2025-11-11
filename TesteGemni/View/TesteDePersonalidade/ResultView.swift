@@ -11,6 +11,7 @@ import SwiftUI
 struct ResultView: View {
     @ObservedObject var viewModel: DiscViewModel
     
+    
     var body: some View {
         ScrollView {
             VStack(spacing: 25) {

@@ -1,18 +1,14 @@
-//
-//  CardProfileTest.swift
-//  TesteGemni
-//
-//  Created by Filipi Romão on 11/11/25.
-//
-
 import SwiftUI
 
 struct CardProfileTest: View {
+    @Binding var testRealized: Bool
+    var onStartTest: () -> Void 
+
     var body: some View {
         HStack(alignment: .center) {
-            VStack{
+            VStack {
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("Perfil corpotamental")
+                    Text("Perfil comportamental")
                         .font(.system(size: 16, weight: .bold))
                         .foregroundColor(.text)
                     
@@ -21,9 +17,9 @@ struct CardProfileTest: View {
                         .foregroundColor(.text)
                         .lineLimit(2)
                 }
-            
+
                 Button(action: {
-                    print("Fazer teste acionado.")
+                    onStartTest() // ✅ aciona navegação controlada pela ProfileView
                 }) {
                     Text("Fazer teste")
                         .font(.system(size: 14, weight: .semibold))
@@ -40,8 +36,4 @@ struct CardProfileTest: View {
         .cornerRadius(12)
         .padding(.bottom, 20)
     }
-}
-
-#Preview {
-    CardProfileTest()
 }

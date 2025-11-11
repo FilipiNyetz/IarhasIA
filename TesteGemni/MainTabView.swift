@@ -8,9 +8,37 @@
 import SwiftUI
 
 struct MainTabView: View {
+
+    @StateObject var discViewModel = DiscViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+
+        TabView {
+            ConexoesView()
+                .tabItem {
+                    Label("Home", systemImage: "house")
+                }
+            ChatEntrevista()
+                .tabItem {
+                    Label("Iarhas IA", systemImage: "message.fill")
+                }
+            //                DiscView()
+            //                    .tabItem{
+            //                        Label("Connection", systemImage: "person.3")
+            //                    }
+            ProfileView()
+                .environmentObject(discViewModel)
+                .tabItem {
+                    Label("Profile", systemImage: "person")
+                }
+        }
+
+        //ConexoesView()
+        //ChatEntrevista()
+        //DiscView()
+        //ProfileView()
     }
+
 }
 
 #Preview {
