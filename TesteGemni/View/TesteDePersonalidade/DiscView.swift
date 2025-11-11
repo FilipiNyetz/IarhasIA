@@ -13,9 +13,11 @@ struct DiscView: View {
     
     var body: some View {
         ZStack {
-            // Fundo mais suave que o branco puro
-            Color(UIColor.systemGroupedBackground)
-                .ignoresSafeArea()
+            // 1. Fundo 100% da Tela
+            Image("backgroundImage")
+                .resizable()
+                .scaledToFill()
+                .ignoresSafeArea(.all)
             
             VStack {
                 if viewModel.finished {
@@ -26,6 +28,8 @@ struct DiscView: View {
                     QuestionView(viewModel: viewModel)
                 }
             }
+            .padding(.top, 20)
+            .padding(.bottom, 25)
             // Animações para transições suaves
             .animation(.easeInOut, value: viewModel.currentIndex)
             .animation(.default, value: viewModel.finished)
@@ -44,22 +48,25 @@ struct QuestionView: View {
             VStack(spacing: 8) {
                 ProgressView(value: Double(viewModel.currentIndex + 1), total: Double(viewModel.questions.count))
                     .progressViewStyle(LinearProgressViewStyle())
-                    .tint(.green) // Um toque de cor
+                    .tint(Color("titleColor")) // Um toque de cor
                     .padding(.horizontal)
                 
                 Text("Pergunta \(viewModel.currentIndex + 1) de \(viewModel.questions.count)")
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(.gray.opacity(8))
             }
             
             // --- Instrução ---
             Text("Escolha a opção que **mais** te representa:")
+                .foregroundColor(Color("TextColor"))
                 .font(.headline)
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(Color(UIColor.secondarySystemGroupedBackground))
+                .background(Color("CardColor"))
                 .cornerRadius(12)
                 .padding(.horizontal)
+            
+            Spacer()
             
             // --- Opções como Cartões ---
             VStack(spacing: 12) {
@@ -73,19 +80,19 @@ struct QuestionView: View {
                             Text(option)
                                 .font(.body)
                                 .fontWeight(.medium)
-                                .foregroundColor(.primary)
+                                .foregroundColor(Color("TextColor"))
                             Spacer()
                             Image(systemName: viewModel.mostSelected == option ? "checkmark.circle.fill" : "circle")
                                 .font(.title2)
-                                .foregroundColor(viewModel.mostSelected == option ? .green : .gray.opacity(0.3))
+                                .foregroundColor(viewModel.mostSelected == option ? Color("titleColor") : .gray.opacity(0.3))
                         }
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .background(Color(UIColor.secondarySystemGroupedBackground))
+                        .background(Color("CardColor"))
                         .cornerRadius(12)
                         .overlay(
                             RoundedRectangle(cornerRadius: 12)
-                                .stroke(viewModel.mostSelected == option ? .green : Color.clear, lineWidth: 2)
+                                .stroke(viewModel.mostSelected == option ? Color("titleColor") : Color.clear, lineWidth: 2)
                         )
                     }
                 }
@@ -102,8 +109,8 @@ struct QuestionView: View {
             .fontWeight(.bold)
             .padding()
             .frame(maxWidth: .infinity)
-            .background(viewModel.mostSelected == nil ? Color(UIColor.systemGray4) : .green)
-            .foregroundColor(viewModel.mostSelected == nil ? Color(UIColor.systemGray) : .white)
+            .background(viewModel.mostSelected == nil ? Color("CardColor") : Color("titleColor"))
+            .foregroundColor(viewModel.mostSelected == nil ? Color("TextColor") : .white)
             .cornerRadius(12)
             .padding(.horizontal)
             .disabled(viewModel.mostSelected == nil)

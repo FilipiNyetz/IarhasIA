@@ -24,5 +24,9 @@ struct ModelPostMock: Identifiable{
 var postMocks: [ModelPostMock] = [
     ModelPostMock(nameProfile: "Joana Costa", jobDescribe: "Especialista em direito tributário", postedAt: Date(), subTitle: "Exemplo de texto de legenda da foto Exemplo de texto de legenda da foto Exemplo de texto de legenda da foto Exemplo de texto de legenda da foto ", isLiked: false, numberOfComments: 5, profilePic: UIImage(named: "JoanaCostaProfile")!, postImage: UIImage(named: "Post1")!),
     
-    ModelPostMock(nameProfile: "Rafael Medeiros", jobDescribe: "Especialista em direito civil", postedAt: Date(), subTitle: "Exemplo de texto de legenda da foto Exemplo de texto de legenda da foto Exemplo de texto de legenda da foto Exemplo de texto de legenda da foto ", isLiked: false, numberOfComments: 10, profilePic: UIImage(named: "RafaelaSantosProfile")!, postImage: UIImage(named: "Post2")!)
+    ModelPostMock(nameProfile: "Rafael Medeiros", jobDescribe: "Especialista em direito civil", postedAt: Date(), subTitle: "Exemplo de texto de legenda da foto Exemplo de texto de legenda da foto Exemplo de texto de legenda da foto Exemplo de texto de legenda da foto ", isLiked: false, numberOfComments: 10, profilePic: UIImage(named: "RafaelaSantosProfile")!, postImage: UIImage(named: "Post2")!),
+    
+    ModelPostMock(nameProfile: "Daniela Almeida", jobDescribe: "Especialista em direito público", postedAt: Date(), subTitle: "Exemplo de texto de legenda da foto Exemplo de texto de legenda da foto Exemplo de texto de legenda da foto Exemplo de texto de legenda da foto ", isLiked: false, numberOfComments: 7, profilePic: UIImage(named: "DanielaAlmeidaProfile")!, postImage: UIImage(named: "Post5")!),
+    
+    ModelPostMock(nameProfile: "Carla Romão", jobDescribe: "Especialista em direito empresarial", postedAt: Date(), subTitle: "Exemplo de texto de legenda da foto Exemplo de texto de legenda da foto Exemplo de texto de legenda da foto Exemplo de texto de legenda da foto ", isLiked: false, numberOfComments: 100, profilePic: UIImage(named: "CarlaRomaoProfile")!, postImage: UIImage(named: "Post4")!)
 ]

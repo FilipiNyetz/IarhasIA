@@ -31,7 +31,7 @@ struct ConexoesView: View {
                         .font(.system(size: 26, weight: .semibold))
                         .foregroundColor(Color.text)
                 }
-                .padding(.top, 12)
+                .padding(.top, 30)
                 .padding(.bottom, 10)
 
                 // 2. Campo de busca
