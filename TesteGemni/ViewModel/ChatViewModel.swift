@@ -5,14 +5,22 @@
 //  Created by Filipi Romão on 10/11/25.
 //
 
+// ChatViewModel.swift
+
 import Foundation
 import Combine
+
+struct Message: Identifiable, Equatable {
+    let id = UUID()
+    let text: String
+    let isUser: Bool
+}
 
 @MainActor
 class ChatViewModel: ObservableObject {
     @Published var userPrompt: String = ""
-//    @Published var systemPrompt: String = ""
     @Published var response: String = ""
+    @Published var messages: [Message] = []
     @Published var isTraining = false
     @Published var jobDescription: String = ""
     @Published var isLoading: Bool = false
@@ -23,6 +31,15 @@ class ChatViewModel: ObservableObject {
     
     init(manager: ManagerChatProtocol = ManagerChat()) {
         self.manager = manager
+        self.response = "Insira a descrição da vaga para iniciar o treino."
+    }
+
+    private func addAIMessage(text: String) {
+        messages.append(Message(text: text, isUser: false))
+    }
+    
+    private func addUserMessage(text: String) {
+        messages.append(Message(text: text, isUser: true))
     }
     
     func startTraining() {
@@ -30,40 +47,62 @@ class ChatViewModel: ObservableObject {
         Task {
             do {
                 isTraining = true
-                response = "Analisando a vaga e preparando perguntas..."
+                isLoading = true
+                
+                // Mensagem de loading no chat. AGORA ELA VAI PARA A LISTA
+                self.addAIMessage(text: "Analisando a vaga e preparando perguntas...")
+                
+                // Limpar a 'response' assim que o treino começar, para garantir que ela não apareça
+                self.response = ""
+                
                 let result = try await manager.startTraining(jobDescription: jobDescription, prompt: basePrompt)
-                response = result
-                print(result)
-                // Só desativar o treino se a lógica interna determinar que acabou
-                // isTraining = false
+                
+                // Adiciona a primeira pergunta da IA como um novo balão
+                self.addAIMessage(text: result)
+                
             } catch {
-                response = "Erro: \(error.localizedDescription)"
-                isTraining = false // erro => volta pro início
+                // Se falhar, voltamos ao estado inicial e atualizamos a 'response'
+                self.response = "Erro ao iniciar o treino: \(error.localizedDescription)"
+                isTraining = false
             }
+            isLoading = false
         }
     }
-
     
     func sendResponse() {
         Task {
             guard !userPrompt.isEmpty else { return }
+            
+            // 1. Adiciona a mensagem do usuário à lista (IMEDIATAMENTE)
+            let currentPrompt = userPrompt
+            self.addUserMessage(text: currentPrompt)
+            userPrompt = ""
+            
             isLoading = true
             do {
                 questionCount += 1
-                var result = try await manager.sendMessage(userPrompt)
+                
+                let result = try await manager.sendMessage(currentPrompt)
                 
                 // Quando chegar à 10ª pergunta, gerar o feedback
                 if questionCount >= 10 {
+                    self.addAIMessage(text: result)
                     let feedback = try await manager.sendMessage("Agora gere um feedback completo sobre o desempenho do candidato.")
-                    result += "\n\n💬 \(feedback)"
+                    self.addAIMessage(text: "💬 Feedback Final:\n\n\(feedback)")
+                    
                     isTraining = false
                     questionCount = 0
+                    
+                    // Ao terminar, a área de chat fica com o histórico, e a `response` pode ser atualizada
+                    // para uma nova instrução se for o caso, mas vamos manter ela vazia.
+                    
+                } else {
+                    // 2. Adiciona a resposta da IA à lista
+                    self.addAIMessage(text: result)
                 }
                 
-                response = result
-                userPrompt = ""
             } catch {
-                response = "Erro: \(error.localizedDescription)"
+                self.addAIMessage(text: "Erro: \(error.localizedDescription)")
             }
             isLoading = false
         }

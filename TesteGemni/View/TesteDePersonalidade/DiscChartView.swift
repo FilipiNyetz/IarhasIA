@@ -12,11 +12,11 @@ struct DiscDonutChartView: View {
     @ObservedObject var viewModel: DiscViewModel
     
     var body: some View {
-        VStack {
+        VStack (alignment: .leading){
             Text("Resultado do teste DISC")
                 .font(.title2)
                 .fontWeight(.bold)
-                .foregroundColor(.indigo)
+                .foregroundColor(.text)
                 .padding(.bottom, 10)
             
             Chart {
@@ -32,6 +32,7 @@ struct DiscDonutChartView: View {
             }
             .frame(width: 300, height: 300)
             .padding(.bottom, 20)
+            .frame(maxWidth: .infinity, alignment: .center)
             
             // Legenda customizada
             HStack(spacing: 15) {
