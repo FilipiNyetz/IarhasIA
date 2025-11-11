@@ -39,7 +39,7 @@ struct ChatInputView: View {
         }
         .padding(.horizontal)
         .padding(.bottom, 24)
-        .background(.thinMaterial)
-        .cornerRadius(30)
+//        .background(.thinMaterial)
+//        .cornerRadius(30)
     }
 }

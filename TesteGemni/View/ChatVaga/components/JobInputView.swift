@@ -40,6 +40,7 @@ struct JobInputView: View {
                     Text("Iniciar Treino")
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity)
+                        .foregroundStyle(.white)
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(.text)

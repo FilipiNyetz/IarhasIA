@@ -13,7 +13,6 @@ struct ChatEntrevista: View {
     @StateObject var chatVm = ChatViewModel(manager: ManagerChat())
 
     var body: some View {
-        NavigationStack {
             ZStack {
                 // 1. Fundo 100% da Tela
                 Image("backgroundImage")
@@ -22,6 +21,18 @@ struct ChatEntrevista: View {
                     .ignoresSafeArea(.all)
 
                 VStack(spacing: 15) {
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text("Iarhas IA")
+                            .font(.system(size: 32, weight: .bold))
+                            .foregroundColor(Color.text)
+                        
+                        Text("Analise suas capacidades técnicas")
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                    }
+                    .padding(.top, 28) 
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    
                     // 3. Área do Chat (ScrollViewReader)
                     ScrollViewReader { proxy in
                         ScrollView {
@@ -79,21 +90,6 @@ struct ChatEntrevista: View {
                     Spacer()
                 }
                 .padding(.horizontal)
-                .padding(.top, 60)
-
-            }
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    VStack(alignment: .leading, spacing: 0) {  // Adicionado VStack para o subtítulo
-                        Text("Iarhas IA")
-                            .font(.system(size: 32, weight: .bold))
-                            .foregroundColor(Color.text)
-
-                    }
-                    .offset(y: 20)
-                }
-            }
-            .navigationBarTitleDisplayMode(.inline)
 
         }
 
