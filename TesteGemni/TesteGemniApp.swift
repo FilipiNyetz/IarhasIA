@@ -12,7 +12,8 @@ struct TesteGemniApp: App {
     var body: some Scene {
         WindowGroup {
 //            ChatEntrevista()
-            DiscView()
+//            DiscView()
+            ConexoesView()
         }
     }
 }
