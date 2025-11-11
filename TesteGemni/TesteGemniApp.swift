@@ -11,7 +11,8 @@ import SwiftUI
 struct TesteGemniApp: App {
     var body: some Scene {
         WindowGroup {
-            ChatEntrevista()
+//            ChatEntrevista()
+            DiscView()
         }
     }
 }
