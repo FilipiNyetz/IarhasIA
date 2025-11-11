@@ -13,7 +13,7 @@ struct DiscDonutChartView: View {
     
     var body: some View {
         VStack {
-            Text("Distribuição DISC")
+            Text("Resultado do teste DISC")
                 .font(.title2)
                 .fontWeight(.bold)
                 .foregroundColor(.indigo)
