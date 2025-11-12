@@ -37,9 +37,12 @@ struct ChatInputView: View {
                 .disabled(chatVm.userPrompt.isEmpty)
             }
         }
-        .padding(.horizontal)
-        .padding(.bottom, 24)
-//        .background(.thinMaterial)
-//        .cornerRadius(30)
+        // 🎯 MODIFICADO:
+        // Deixe a view pai (ChatEntrevista) cuidar dos paddings externos.
+        // Você pode manter o estilo de "vidro" se quiser.
+        .padding(.horizontal, 12) // Padding interno da barra
+        .padding(.vertical, 8)    // Padding interno da barra
+        .background(.thinMaterial)
+        .cornerRadius(30)
     }
 }
