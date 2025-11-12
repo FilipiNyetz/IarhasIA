@@ -16,19 +16,23 @@ struct ResultView: View {
         ScrollView {
             VStack(spacing: 25) {
                 
-                // --- Título ---
-                Text("Resultado do Teste DISC")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .multilineTextAlignment(.center)
-                    .padding(.top)
+                VStack{
+                    Text("Teste DISC")
+                        .font(Font.headline)
+                        .foregroundStyle(Color.title)
+                        .fontWeight(.semibold)
+                        .padding(.bottom,10)
                 
-                Spacer()
-                
-                // --- Gráfico ---
-                DiscDonutChartView(viewModel: viewModel)
-                    .frame(height: 250)
-                    .padding(.vertical)
+                    
+                    // --- Gráfico ---
+                    DiscDonutChartView(viewModel: viewModel)
+                        .frame(height: 220)
+                        .padding(.vertical)
+                }
+                .padding()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color(UIColor.secondarySystemGroupedBackground))
+                .cornerRadius(12)
                 
                 // --- Legenda/Scores ---
                 HStack {
