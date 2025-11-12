@@ -13,20 +13,15 @@ struct DiscDonutChartView: View {
     
     var body: some View {
         VStack (alignment: .leading){
-            Text("Resultado do teste DISC")
-                .font(.title2)
-                .fontWeight(.bold)
-                .foregroundColor(.text)
-                .padding(.bottom, 10)
             
             Chart {
                 ForEach(viewModel.chartData) { data in
                     SectorMark(
                         angle: .value("Pontuação", data.value),
                         innerRadius: .ratio(0.55),
-                        angularInset: 2.0
+                        angularInset: 4.0
                     )
-                    .foregroundStyle(by: .value("Fator", data.label))
+                    .foregroundStyle(color(for: data.label))
                     .cornerRadius(6)
                 }
             }
@@ -35,7 +30,7 @@ struct DiscDonutChartView: View {
             .frame(maxWidth: .infinity, alignment: .center)
             
             // Legenda customizada
-            HStack(spacing: 15) {
+            HStack() {
                 ForEach(viewModel.chartData, id: \.id) { item in
                     Label {
                         Text(labelName(for: item.label))
@@ -54,10 +49,10 @@ struct DiscDonutChartView: View {
     // Nome completo do fator
     private func labelName(for label: String) -> String {
         switch label {
-        case "D": return "Dominância"
-        case "I": return "Influência"
-        case "S": return "Estabilidade"
-        case "C": return "Conformidade"
+        case "D": return "Dominante"
+        case "I": return "Influente"
+        case "S": return "Estável"
+        case "C": return "Conforme"
         default: return label
         }
     }
@@ -65,10 +60,10 @@ struct DiscDonutChartView: View {
     // Cor fixa para cada tipo DISC
     private func color(for label: String) -> Color {
         switch label {
-        case "D": return .red.opacity(0.8)
-        case "I": return .orange.opacity(0.8)
-        case "S": return .green.opacity(0.8)
-        case "C": return .blue.opacity(0.8)
+        case "D": return .red
+        case "I": return .orange
+        case "S": return .green
+        case "C": return .blue
         default: return .gray
         }
     }

@@ -23,12 +23,19 @@ struct ResultView: View {
                     .multilineTextAlignment(.center)
                     .padding(.top)
                 
-                Spacer()
-                
-                // --- Gráfico ---
-                DiscDonutChartView(viewModel: viewModel)
-                    .frame(height: 250)
-                    .padding(.vertical)
+                ZStack{
+                    
+                    RoundedRectangle(cornerRadius: 10)
+                        .frame(height: 400)
+                        .foregroundStyle(Color(.white))
+                    
+                    // --- Gráfico ---
+                    DiscDonutChartView(viewModel: viewModel)
+                        .frame(height: 250)
+                        .padding(.vertical)
+                    
+                    
+                }
                 
                 // --- Legenda/Scores ---
                 HStack {
@@ -41,17 +48,19 @@ struct ResultView: View {
                             VStack(spacing: 4) {
                                 Text(key)
                                     .font(.headline)
+                                    .foregroundStyle(Color(.label))
                                 
                                 // Busque o valor correspondente no dicionário
                                 Text("\(viewModel.result[key] ?? 0)")
                                     .font(.title2)
                                     .fontWeight(.semibold)
+                                    .foregroundColor(Color(.black))
                             }
                             .frame(maxWidth: .infinity)
                         }
                     }
                     .padding()
-                    .background(Color(UIColor.secondarySystemGroupedBackground))
+                    .background(Color(.white))
                     .cornerRadius(12)
                 
                 // --- Descrições em Cartões ---
