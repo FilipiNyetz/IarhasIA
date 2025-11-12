@@ -15,10 +15,8 @@ struct DiscView: View {
 
             VStack {
                 if viewModel.finished {
-                    // Exibe o resultado do teste
                     ResultView(viewModel: viewModel)
                 } else {
-                    // Exibe as perguntas
                     QuestionView(viewModel: viewModel)
                 }
             }
@@ -28,7 +26,6 @@ struct DiscView: View {
             .animation(.default, value: viewModel.finished)
         }
         .onChange(of: viewModel.finished) { finished in
-            // ✅ Marca o teste como completo somente uma vez
             if finished && !testPerfilHasCompleted {
                 testPerfilHasCompleted = true
                 print("✅ Teste finalizado e salvo no AppStorage!")

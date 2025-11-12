@@ -13,12 +13,6 @@ struct DiscDonutChartView: View {
     
     var body: some View {
         VStack (alignment: .leading){
-            Text("Resultado do teste DISC")
-                .font(.title2)
-                .fontWeight(.bold)
-                .foregroundColor(.text)
-                .padding(.bottom, 10)
-            
             Chart {
                 ForEach(viewModel.chartData) { data in
                     SectorMark(
@@ -26,11 +20,11 @@ struct DiscDonutChartView: View {
                         innerRadius: .ratio(0.55),
                         angularInset: 2.0
                     )
-                    .foregroundStyle(by: .value("Fator", data.label))
+                    .foregroundStyle(color(for: data.label))
                     .cornerRadius(6)
                 }
             }
-            .frame(width: 300, height: 300)
+            .frame(width: 220, height: 220)
             .padding(.bottom, 20)
             .frame(maxWidth: .infinity, alignment: .center)
             

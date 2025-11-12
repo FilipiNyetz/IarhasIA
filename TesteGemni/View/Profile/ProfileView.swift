@@ -20,14 +20,14 @@ struct ProfileView: View {
                         Text("Perfil")
                             .font(.system(size: 32, weight: .bold))
                             .foregroundColor(Color.text)
-                            .padding(.top, 10)
                         Spacer()
                         Image(systemName: "person.circle.fill")
                             .font(.system(size: 30))
                             .foregroundColor(.gray)
                             .opacity(0.6)
-                            .padding(.top, 10)
                     }
+                    .padding(.top, 42)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.bottom, 25)
 
                     // Cartão de perfil
@@ -36,7 +36,7 @@ struct ProfileView: View {
                         nmeProfile: profile.nameProfile,
                         jobDescribe: profile.jobDescribe
                     )
-                    .padding(.bottom, 25)
+//                    .padding(.bottom, 25)
 
                     // Card de teste OU DiscView
                     if testPerfilHasCompleted {
@@ -81,9 +81,6 @@ struct ProfileView: View {
                     DiscView()
                 }
             }
-        }
-        .onAppear {
-            print("🧠 Estado atual do teste: \(testPerfilHasCompleted)")
         }
     }
 }

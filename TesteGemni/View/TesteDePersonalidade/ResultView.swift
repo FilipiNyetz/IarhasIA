@@ -56,24 +56,21 @@ struct ResultView: View {
                 
                 // --- Descrições em Cartões ---
                 
-                if let primaryDescription = viewModel.discResult?.primary.description {
-                    DescriptionCard(title: "Perfil Principal", text: primaryDescription)
-                }
                 
-                if let secondaryDescription = viewModel.discResult?.secondary.description {
-                    DescriptionCard(title: "Perfil Secundário", text: secondaryDescription)
+                if let primaryDescription = viewModel.discResult?.primary.description, let secondaryDescription = viewModel.discResult?.secondary.description{
+                    ResponseProfileCard(textPrimary: primaryDescription, textSecondary: secondaryDescription)
                 }
                 
                 if let primaryPontosFortes = viewModel.discResult?.primary.pontosFortes {
-                    DescriptionCard(title: "Pontos Fortes", text: "\(primaryPontosFortes)")
+                    DescriptionCard(title: "Pontos Fortes", list: primaryPontosFortes)
                 }
 
                 if let primaryPontosFracos = viewModel.discResult?.secondary.pontosFracos {
-                    DescriptionCard(title: "Pontos a Desenvolver", text: "\(primaryPontosFracos)")
+                    DescriptionCard(title: "Pontos a Desenvolver", list: primaryPontosFracos)
                 }
                 
                 if let blendDescription = viewModel.discResult?.blendDescription {
-                    DescriptionCard(title: "Sua Combinação", text: blendDescription)
+                    ResumeCard(text: blendDescription)
                 }
             }
             .padding()

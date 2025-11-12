@@ -11,9 +11,14 @@ import SwiftUI
 
 @main
 struct TesteGemniApp: App {
+    
+    @StateObject var discViewModel = DiscViewModel()
+
     var body: some Scene {
         WindowGroup {
-            RootView()
+//            RootView()
+            DiscView()
+                .environmentObject(discViewModel)
         }
     }
 }
