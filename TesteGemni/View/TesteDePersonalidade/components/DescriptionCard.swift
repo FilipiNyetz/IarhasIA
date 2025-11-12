@@ -12,6 +12,8 @@ struct DescriptionCard: View {
     let title: String
     var list: [String]?
 
+    var onWeaknessTapped: ((String) -> Void)? = nil
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(title)
@@ -19,15 +21,9 @@ struct DescriptionCard: View {
                 .foregroundStyle(Color.title)
                 .fontWeight(.semibold)
 
-            if let list = list {
-                ForEach(list, id: \.self) { item in
-                    HStack{
-                        Button(action: {
-                            print()
-                        }, label: {
-                            TraitTagView(text: item)
-                        })
-                    }
+            if let list = list, !list.isEmpty {
+                TagFlowView(items: list, isWeakness: onWeaknessTapped != nil) { item in
+                    onWeaknessTapped?(item)
                 }
             }
         }
