@@ -47,9 +47,13 @@ struct JobInputView: View {
                 .controlSize(.large)
                 .disabled(chatVm.jobDescription.isEmpty)
             }
+            
+            
         }
         .padding()
         .background(Color.card)
         .cornerRadius(20)
+        
+        Spacer()
     }
 }

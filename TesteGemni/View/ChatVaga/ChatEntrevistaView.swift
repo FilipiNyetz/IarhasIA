@@ -75,6 +75,7 @@ struct ChatEntrevista: View {
                     alignment: .top
                 )
                 .frame(maxWidth: .infinity)
+                .scrollDismissesKeyboard(.interactively)
 
                 // Lógica do Scroll (sem alteração)
                 .onChange(
@@ -88,19 +89,15 @@ struct ChatEntrevista: View {
                 }
             }
 
-            // 4. Área de Input (sem alteração na lógica)
             if !chatVm.isTraining {
                 JobInputView(chatVm: chatVm)
             } else {
                 ChatInputView(chatVm: chatVm)
             }
-            
-            // 5. ❌ REMOVIDO: O Spacer() não é mais necessário
-            // Spacer()
+
         }
-        .padding(.horizontal) // Padding lateral para toda a tela
-        .padding(.bottom, 8)  // Pequeno padding inferior
-        
+        .padding(.horizontal)
+        .padding(.bottom, 8)  
         // 6. 🎯 ESTA É A MUDANÇA PRINCIPAL
         // O ZStack foi movido para o fundo da VStack.
         // O .background ignora a safe area, mas a VStack (com seu conteúdo) NÃO.
