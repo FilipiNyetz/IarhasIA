@@ -99,6 +99,7 @@ struct ChatEntrevista: View {
 
                 Spacer()
             }
+            .ignoresSafeArea(.keyboard, edges: .bottom)
             .padding(.horizontal)
             .onAppear(perform: checkAndPasteJobDescription)
 
