@@ -30,7 +30,7 @@ struct ChatEntrevista: View {
                             .font(.subheadline)
                             .foregroundColor(.gray)
                     }
-                    .padding(.top, 28) 
+                    .padding(.top, 32) 
                     .frame(maxWidth: .infinity, alignment: .leading)
                     
                     // 3. Área do Chat (ScrollViewReader)

@@ -19,7 +19,7 @@ struct HomeView: View {
             // --- Conteúdo Principal ---
             VStack(alignment: .leading, spacing: 0) {
                 HStack {
-                    VStack(alignment: .leading, spacing: 2) {
+                    VStack(alignment: .leading) {
                         Text("Início")
                             .font(.system(size: 32, weight: .bold))
                             .foregroundColor(Color.text)
@@ -29,9 +29,11 @@ struct HomeView: View {
                     }
 
                     Spacer()
-                    Image(systemName: "person.circle")
-                        .font(.system(size: 26, weight: .semibold))
-                        .foregroundStyle(Color.data)
+                    Image(systemName: "person.circle.fill")
+                        .font(.system(size: 32, weight: .medium))
+                        .foregroundColor(.gray)
+                        .opacity(0.8)
+//                        .padding(.top, 10)
                 }
                 .padding(.bottom, 10)
                 .padding(.horizontal)

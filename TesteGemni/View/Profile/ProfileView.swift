@@ -25,10 +25,10 @@ struct ProfileView: View {
                         Image(systemName: "person.circle.fill")
                             .font(.system(size: 30))
                             .foregroundColor(.gray)
-                            .opacity(0.6)
+                            .opacity(0.8)
                             .padding(.top, 10)
                     }
-                    .padding(.bottom, 25)
+                    .padding(.vertical, 25)
 
                     // Cartão de perfil
                     ProfileDetailsCard(
