@@ -14,13 +14,17 @@ struct MainTabView: View {
     var body: some View {
 
         TabView {
-            ConexoesView()
+            HomeView()
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
             ChatEntrevista()
                 .tabItem {
                     Label("Iarhas IA", systemImage: "message.fill")
+                }
+            ConexoesView()
+                .tabItem {
+                    Label("Conexões", systemImage: "person.3")
                 }
             //                DiscView()
             //                    .tabItem{
