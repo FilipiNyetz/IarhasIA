@@ -21,14 +21,8 @@ struct ProfileView: View {
                             .font(.system(size: 32, weight: .bold))
                             .foregroundColor(Color.text)
                         Spacer()
-                        Image(systemName: "person.circle.fill")
-                            .font(.system(size: 30))
-                            .foregroundColor(.gray)
-                            .opacity(0.6)
                     }
-                    .padding(.top, 42)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.bottom, 25)
+                    .padding(.vertical, 25)
 
                     // Cartão de perfil
                     ProfileDetailsCard(

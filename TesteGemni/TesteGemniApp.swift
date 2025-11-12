@@ -16,9 +16,7 @@ struct TesteGemniApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RootView()
-//            DiscView()
-//                .environmentObject(discViewModel)
+            MainTabView()
         }
     }
 }

@@ -28,8 +28,9 @@ struct ConexoesView: View {
                         .foregroundColor(Color.text)
                     Spacer()
                     Image(systemName: "plus.circle")
-                        .font(.system(size: 26, weight: .semibold))
-                        .foregroundColor(Color.text)
+                        .font(.system(size: 32, weight: .medium))
+                        .foregroundColor(.gray)
+                        .opacity(0.8)
                 }
                 .padding(.top, 30)
                 .padding(.bottom, 10)

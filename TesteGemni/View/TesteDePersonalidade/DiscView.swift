@@ -26,6 +26,7 @@ struct DiscView: View {
             .animation(.default, value: viewModel.finished)
         }
         .onChange(of: viewModel.finished) {_, finished in
+            // ✅ Marca o teste como completo somente uma vez
             if finished && !testPerfilHasCompleted {
                 testPerfilHasCompleted = true
                 print("✅ Teste finalizado e salvo no AppStorage!")

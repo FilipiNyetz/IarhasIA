@@ -8,37 +8,46 @@
 import SwiftUI
 
 struct MainTabView: View {
-
+    
     @StateObject var discViewModel = DiscViewModel()
+    @StateObject var chatVm = ChatViewModel(manager: ManagerChat())
+    @StateObject private var appState = AppState()
     
     var body: some View {
-
-        TabView {
-            ConexoesView()
-                .tabItem {
-                    Label("Home", systemImage: "house")
-                }
-            ChatEntrevista()
-                .tabItem {
-                    Label("Iarhas IA", systemImage: "message.fill")
-                }
-            //                DiscView()
-            //                    .tabItem{
-            //                        Label("Connection", systemImage: "person.3")
-            //                    }
-            ProfileView()
-                .environmentObject(discViewModel)
-                .tabItem {
-                    Label("Profile", systemImage: "person")
-                }
+        
+        TabView(selection: $appState.selectedTab) {
+            NavigationStack {
+                HomeView()
+            }
+            .tabItem { Label("Início", systemImage: "house") }
+            .tag(0)
+            
+            NavigationStack {
+                // Passa o VM compartilhado
+                ChatEntrevista(chatVm: chatVm)
+            }
+            .tabItem { Label("Iarhas IA", systemImage: "message.fill") }
+            .tag(1) // A aba de destino é 1
+            NavigationStack{
+                ConexoesView()
+            }
+            .tabItem {
+                Label("Conexões", systemImage: "person.3")
+            }
+            .tag(2)
+            NavigationStack{
+                ProfileView()
+            }
+            .environmentObject(discViewModel)
+            .tabItem {
+                Label("Perfil", systemImage: "person")
+            }
+            .tag(3)
         }
-
-        //ConexoesView()
-        //ChatEntrevista()
-        //DiscView()
-        //ProfileView()
+        .environmentObject(appState)
+        .environmentObject(chatVm)
     }
-
+    
 }
 
 #Preview {
