@@ -19,7 +19,7 @@ struct ConexoesView: View {
                 .ignoresSafeArea()
 
             // --- Conteúdo Principal ---
-            VStack(alignment: .leading, spacing: 0) { // spacing: 0 para controlar os espaçamentos com .padding()
+            VStack(alignment: .leading, spacing: 0) {
 
                 // 1. Título e Ícone
                 HStack {

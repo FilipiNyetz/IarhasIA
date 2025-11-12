@@ -52,15 +52,15 @@ struct DiscProfileHelper {
     static func blendFeedback(for blend: String) -> String {
         switch blend {
         case "D/I":
-            return "Combina **foco em resultados (D)** com **carisma e energia (I)**. Ideal para liderar e inspirar equipes."
+            return "Combina foco em resultados (D) com carisma e energia (I). Ideal para liderar e inspirar equipes."
         case "I/S":
-            return "Une **empatia e sociabilidade (I)** com **estabilidade e harmonia (S)** — ótimo em equipes colaborativas."
+            return "Une empatia e sociabilidade (I) com estabilidade e harmonia (S) — ótimo em equipes colaborativas."
         case "S/C":
-            return "Mistura **paciência e consistência (S)** com **atenção a detalhes (C)** — excelente para funções de suporte e qualidade."
+            return "Mistura paciência e consistência (S) com atenção a detalhes (C) — excelente para funções de suporte e qualidade."
         case "C/D":
-            return "Combina **precisão técnica (C)** com **assertividade (D)** — ideal para liderança técnica e análise estratégica."
+            return "Combina precisão técnica (C) com assertividade (D) — ideal para liderança técnica e análise estratégica."
         case "D/C":
-            return "Equilibra **determinação (D)** com **rigor e método (C)** — prático e exigente, busca resultados sólidos."
+            return "Equilibra determinação (D) com rigor e método (C) — prático e exigente, busca resultados sólidos."
         case "I/D":
             return "Carismático e competitivo — inspira e influencia com autoconfiança."
         case "S/I":

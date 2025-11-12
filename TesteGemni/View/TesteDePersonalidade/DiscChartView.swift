@@ -25,7 +25,7 @@ struct DiscDonutChartView: View {
                     .cornerRadius(6)
                 }
             }
-            .frame(width: 300, height: 300)
+            .frame(width: 220, height: 220)
             .padding(.bottom, 20)
             .frame(maxWidth: .infinity, alignment: .center)
             

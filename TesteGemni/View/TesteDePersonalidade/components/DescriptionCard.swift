@@ -10,17 +10,22 @@ import SwiftUI
 
 struct DescriptionCard: View {
     let title: String
-    let text: String
-    
+    var list: [String]?
+
+    var onWeaknessTapped: ((String) -> Void)? = nil
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(title)
-                .font(.title2)
+                .font(Font.headline)
+                .foregroundStyle(Color.title)
                 .fontWeight(.semibold)
-            
-            Text(text)
-                .font(.body)
-                .lineSpacing(5)
+
+            if let list = list, !list.isEmpty {
+                TagFlowView(items: list, isWeakness: onWeaknessTapped != nil) { item in
+                    onWeaknessTapped?(item)
+                }
+            }
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -28,4 +33,3 @@ struct DescriptionCard: View {
         .cornerRadius(12)
     }
 }
-

@@ -30,7 +30,7 @@ struct ProfileDetailsCard: View {
                     .font(.system(size: 15))
                     .foregroundColor(.gray)
             }
-            Spacer()
+//            Spacer()
         }
     }
 }

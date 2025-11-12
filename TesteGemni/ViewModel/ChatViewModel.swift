@@ -93,11 +93,9 @@ class ChatViewModel: ObservableObject {
                     isTraining = false
                     questionCount = 0
                     
-                    // Ao terminar, a área de chat fica com o histórico, e a `response` pode ser atualizada
-                    // para uma nova instrução se for o caso, mas vamos manter ela vazia.
                     
                 } else {
-                    // 2. Adiciona a resposta da IA à lista
+
                     self.addAIMessage(text: result)
                 }
                 

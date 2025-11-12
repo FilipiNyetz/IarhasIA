@@ -15,10 +15,8 @@ struct DiscView: View {
 
             VStack {
                 if viewModel.finished {
-                    // Exibe o resultado do teste
                     ResultView(viewModel: viewModel)
                 } else {
-                    // Exibe as perguntas
                     QuestionView(viewModel: viewModel)
                 }
             }
