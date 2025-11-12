@@ -22,7 +22,11 @@ struct DescriptionCard: View {
             if let list = list {
                 ForEach(list, id: \.self) { item in
                     HStack{
-                        TraitTagView(text: item)
+                        Button(action: {
+                            print()
+                        }, label: {
+                            TraitTagView(text: item)
+                        })
                     }
                 }
             }
