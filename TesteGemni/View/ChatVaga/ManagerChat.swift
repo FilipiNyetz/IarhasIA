@@ -16,12 +16,28 @@ final class ManagerChat: ManagerChatProtocol {
                 "\(prompt)\nDescrição da vaga: \(jobDescription)"
             ])
         ])
-        
+            
         guard let chat else { return "Erro ao iniciar o chat." }
-        
+            
         let result = try await chat.sendMessage("Analise a vaga e inicie as perguntas técnicas.")
-        print(result.text!)
-        return result.text ?? "Erro ao gerar perguntas."
+        
+        guard var text = result.text else {
+            return "Erro ao gerar perguntas."
+        }
+
+        print(text)
+
+        let logMarker = "---"
+        let markerStart = "[INÍCIO DO LOG INTERNO"
+            
+        if let range = text.range(of: logMarker, options: .literal) {
+            text = String(text[..<range.lowerBound])
+        }
+        else if let range = text.range(of: markerStart, options: .caseInsensitive) {
+            text = String(text[..<range.lowerBound])
+        }
+        
+        return text.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
     func sendMessage(_ message: String) async throws -> String {

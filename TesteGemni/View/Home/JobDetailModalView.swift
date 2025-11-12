@@ -10,6 +10,7 @@ import SwiftUI
 struct JobDetailModalView: View {
     @Environment(\.dismiss) var dismiss
     let job: JobDetail
+    let onStartTraining: (String) -> Void
 
     var body: some View {
             ScrollView {
@@ -84,10 +85,22 @@ struct JobDetailModalView: View {
                             .lineSpacing(4)
                     }
                     
+                    let fullJobDescription = """
+                                    Vaga: \(job.jobTitle)
+                                    Empresa: \(job.companyName)
+                                    Local: \(job.location)
+                                    Resumo: \(job.summary)
+                                    REQUISITOS:
+                                    \(job.requirements)
+                                    DIFERENCIAIS:
+                                    \(job.differentials)
+                                    SOBRE A EMPRESA: \(job.aboutCompany)
+                                    \(job.companyActivity)
+                                    """
+                    
                     Button("Treinar entrevista para esta vaga") {
+                        onStartTraining(fullJobDescription)
                         dismiss()
-                        // Ação para iniciar o treino
-                        // Você pode adicionar a lógica para iniciar a entrevista aqui
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(Color.title)

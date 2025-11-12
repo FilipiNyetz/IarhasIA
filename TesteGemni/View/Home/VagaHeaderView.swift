@@ -56,7 +56,7 @@ let mockJobs = [
     // Vaga 1 (Exemplo Original)
     JobDetail(
         imageName: "vaga1",
-        jobTitle: "Advogado com experiência em Direito Tributário",
+        jobTitle: "Advogado Pleno em Direito Tributário",
         companyName: "YG - Yassaga Garcia Sociedade de Advogados",
         location: "Brasília, Distrito Federal, Brasil",
         summary: "Advogado com experiência em Direito Tributário",

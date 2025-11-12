@@ -13,7 +13,7 @@ import SwiftUI
 struct TesteGemniApp: App {
     var body: some Scene {
         WindowGroup {
-            RootView()
+            MainTabView()
         }
     }
 }

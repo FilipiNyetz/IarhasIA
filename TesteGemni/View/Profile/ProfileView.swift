@@ -22,11 +22,6 @@ struct ProfileView: View {
                             .foregroundColor(Color.text)
                             .padding(.top, 10)
                         Spacer()
-                        Image(systemName: "person.circle.fill")
-                            .font(.system(size: 30))
-                            .foregroundColor(.gray)
-                            .opacity(0.8)
-                            .padding(.top, 10)
                     }
                     .padding(.vertical, 25)
 

@@ -10,37 +10,37 @@ import SwiftUI
 struct MainTabView: View {
 
     @StateObject var discViewModel = DiscViewModel()
+    @StateObject var chatVm = ChatViewModel(manager: ManagerChat())
+    @StateObject private var appState = AppState()
     
     var body: some View {
 
-        TabView {
-            HomeView()
-                .tabItem {
-                    Label("Home", systemImage: "house")
-                }
-            ChatEntrevista()
-                .tabItem {
-                    Label("Iarhas IA", systemImage: "message.fill")
-                }
+        TabView(selection: $appState.selectedTab) {
+            // 🎯 Envolve cada aba em seu próprio NavigationStack para isolamento
+                        NavigationStack {
+                            HomeView()
+                        }
+                        .tabItem { Label("Início", systemImage: "house") }
+                        .tag(0)
+                        
+                        NavigationStack {
+                            // Passa o VM compartilhado
+                            ChatEntrevista(chatVm: chatVm)
+                        }
+                        .tabItem { Label("Iarhas IA", systemImage: "message.fill") }
+                        .tag(1) // A aba de destino é 1
             ConexoesView()
                 .tabItem {
                     Label("Conexões", systemImage: "person.3")
                 }
-            //                DiscView()
-            //                    .tabItem{
-            //                        Label("Connection", systemImage: "person.3")
-            //                    }
             ProfileView()
                 .environmentObject(discViewModel)
                 .tabItem {
-                    Label("Profile", systemImage: "person")
+                    Label("Perfil", systemImage: "person")
                 }
         }
-
-        //ConexoesView()
-        //ChatEntrevista()
-        //DiscView()
-        //ProfileView()
+        .environmentObject(appState)
+        .environmentObject(chatVm)
     }
 
 }
