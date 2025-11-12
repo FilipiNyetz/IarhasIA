@@ -26,7 +26,7 @@ struct ResultView: View {
                     // --- Gráfico ---
                     DiscDonutChartView(viewModel: viewModel)
                         .frame(height: 220)
-                        .padding(.vertical)
+                        .padding(.vertical, 20)
                 }
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)

@@ -30,21 +30,42 @@ struct DiscDonutChartView: View {
             .frame(maxWidth: .infinity, alignment: .center)
             
             // Legenda customizada
-            HStack() {
-                ForEach(viewModel.chartData, id: \.id) { item in
-                    Label {
-                        Text(labelName(for: item.label))
-                            .font(.subheadline)
-                    } icon: {
-                        Circle()
-                            .fill(color(for: item.label))
-                            .frame(width: 14, height: 14)
-                    }
-                }
-            }
+            VStack(spacing: 8) { // Contêiner Vertical principal
+                            
+                            // 🎯 LINHA 1: Itens 1 e 2
+                            HStack {
+                                ForEach(viewModel.chartData.prefix(2), id: \.id) { item in
+                                    legendItemView(item: item)
+                                }
+                            }
+                            .frame(maxWidth: .infinity)
+                            
+                            // 🎯 LINHA 2: Itens 3 e 4
+                            HStack {
+                                ForEach(viewModel.chartData.suffix(2), id: \.id) { item in
+                                    legendItemView(item: item)
+                                }
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                        .padding(.horizontal, 20)
+                       
         }
         .padding()
+        
     }
+    private func legendItemView(item: DiscChartData) -> some View {
+            Label {
+                Text(labelName(for: item.label))
+                    .font(.subheadline)
+            } icon: {
+                Circle()
+                    .fill(color(for: item.label))
+                    .frame(width: 14, height: 14)
+            }
+            // Faz com que cada item use o máximo de espaço disponível na sua HStack
+            .frame(maxWidth: .infinity, alignment: .center)
+        }
     
     // Nome completo do fator
     private func labelName(for label: String) -> String {

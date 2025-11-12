@@ -22,54 +22,65 @@ struct ProfileView: View {
                             .foregroundColor(Color.text)
                         Spacer()
                     }
+                    .padding(.horizontal, 20)
                     .padding(.vertical, 25)
 
-                    // Cartão de perfil
-                    ProfileDetailsCard(
-                        profilePic: profile.profilePic,
-                        nmeProfile: profile.nameProfile,
-                        jobDescribe: profile.jobDescribe
-                    )
-//                    .padding(.bottom, 25)
-
-                    // Card de teste OU DiscView
-                    if testPerfilHasCompleted {
-                        ResultView(viewModel: viewModel)
-                    } else {
-                        CardProfileTest(
-                            testRealized: $testPerfilHasCompleted,
-                            onStartTest: { showDiscView = true } 
-                        )
-                    }
-
-                    Divider()
-                        .foregroundStyle(Color.text)
-
-                    Text("Minhas publicações")
-                        .font(.system(size: 22, weight: .bold))
-                        .foregroundColor(.black)
-                        .padding(.bottom, 15)
-                        .padding(.top, 10)
-
-                    ScrollView(showsIndicators: false) {
-                        LazyVStack(spacing: 25) {
-                            ForEach(postsProfile) { post in
-                                PostComponentView(
-                                    imageProfile: post.profilePic,
-                                    nameProfile: post.nameProfile,
-                                    jobDescribe: post.jobDescribe,
-                                    datePost: post.postedAt,
-                                    subtitlePost: post.subTitle,
-                                    imagePost: post.postImage,
-                                    isLiked: post.isLiked,
-                                    totalComments: post.numberOfComments
+                    ScrollView(showsIndicators: false){
+                        VStack(alignment: .leading, spacing: 25) {
+                            // Cartão de perfil
+                            ProfileDetailsCard(
+                                profilePic: profile.profilePic,
+                                nmeProfile: profile.nameProfile,
+                                jobDescribe: profile.jobDescribe
+                            )
+                            .padding(.horizontal, 20)
+        //                    .padding(.bottom, 25)
+                            
+                            // Card de teste OU DiscView
+                            if testPerfilHasCompleted {
+                                ResultView(viewModel: viewModel)
+                            } else {
+                                CardProfileTest(
+                                    testRealized: $testPerfilHasCompleted,
+                                    onStartTest: { showDiscView = true }
                                 )
+                                .padding(.horizontal, 20)
                             }
+                            
+                            Divider()
+                                .foregroundStyle(Color.text)
+                            
+                            Text("Minhas publicações")
+                                .font(.system(size: 22, weight: .bold))
+                                .foregroundColor(.black)
+                                .padding(.bottom, 15)
+                                .padding(.top, 10)
+                                .padding(.horizontal, 20)
+                            
+                            LazyVStack(spacing: 25) {
+                                ForEach(postsProfile) { post in
+                                    PostComponentView(
+                                        imageProfile: post.profilePic,
+                                        nameProfile: post.nameProfile,
+                                        jobDescribe: post.jobDescribe,
+                                        datePost: post.postedAt,
+                                        subtitlePost: post.subTitle,
+                                        imagePost: post.postImage,
+                                        isLiked: post.isLiked,
+                                        totalComments: post.numberOfComments
+                                    )
+                                }
+                            }
+                            .padding(.bottom, 100)
+                            .padding(.horizontal, 20)
+                            
+                            
                         }
-                        .padding(.bottom, 100)
+
+                        
+                        Spacer()
                     }
                 }
-                .padding(.horizontal, 20)
                 // ✅ Navegação real controlada pelo estado local
                 .navigationDestination(isPresented: $showDiscView) {
                     DiscView()
