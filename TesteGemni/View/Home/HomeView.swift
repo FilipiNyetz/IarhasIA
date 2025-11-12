@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var selectedJob: JobDetail? = nil
+    let jobData = mockJobs
+
     var body: some View {
         ZStack {
             // --- Background ---
@@ -33,7 +36,7 @@ struct HomeView: View {
                         .font(.system(size: 32, weight: .medium))
                         .foregroundColor(.gray)
                         .opacity(0.8)
-//                        .padding(.top, 10)
+                    //                        .padding(.top, 10)
                 }
                 .padding(.bottom, 10)
                 .padding(.horizontal)
@@ -59,11 +62,19 @@ struct HomeView: View {
                 .padding()
 
                 VStack(alignment: .leading, spacing: 10) {
-                    VagaHeaderView(imageName: "vaga1", jobTitle: "Advogado(a) Junior", companyName: "YG - Yassaga Garcia Sociedade de Advogados")
-                    VagaHeaderView(imageName: "vaga2", jobTitle: "Assistente de Recursos Humanos", companyName: "Armando Costa Advogados")
-                    VagaHeaderView(imageName: "vaga3", jobTitle: "Estagiário Direito Cível", companyName: "Catarina Michele Sociedade")
-                    VagaHeaderView(imageName: "vaga4", jobTitle: "Advogado(a) Junior", companyName: "YG - Yassaga Garcia Sociedade de Advogados")
-                
+                    ForEach(jobData) { job in
+                        Button(action: {
+                            self.selectedJob = job
+                        }) {
+                            VagaHeaderView(
+                                imageName: job.imageName,
+                                jobTitle: job.jobTitle,
+                                companyName: job.companyName
+                            )
+                            .foregroundColor(.black)  
+                        }
+                    }
+
                 }
                 .frame(maxWidth: .infinity)
                 .background(Color.white)
@@ -73,6 +84,13 @@ struct HomeView: View {
         }
         .padding(.horizontal)
         .frame(maxHeight: .infinity)
+        .sheet(item: $selectedJob) { job in
+            JobDetailModalView(job: job)
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.visible)
+                        
+        }
+        
     }
 }
 

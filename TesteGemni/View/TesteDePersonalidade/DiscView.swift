@@ -27,7 +27,7 @@ struct DiscView: View {
             .animation(.easeInOut, value: viewModel.currentIndex)
             .animation(.default, value: viewModel.finished)
         }
-        .onChange(of: viewModel.finished) { finished in
+        .onChange(of: viewModel.finished) {_, finished in
             // ✅ Marca o teste como completo somente uma vez
             if finished && !testPerfilHasCompleted {
                 testPerfilHasCompleted = true
